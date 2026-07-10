@@ -68,7 +68,7 @@ part on a measured benchmark: its median of {{figure:winner.benchMs}} millisecon
 came in {{figure:winner.benchDeltaPct}} against the obvious lane's
 {{figure:obvious.benchMs}} milliseconds. That gap is a real improvement the small
 diff never attempted. With a single run ({{figure:cohort.n}}) this is one result,
-not a win rate; the honest claim is that on this ticket the obvious strategy lost.
+not a win rate; the claim is that on this ticket the obvious strategy lost.
 
 ## The safety argument
 
