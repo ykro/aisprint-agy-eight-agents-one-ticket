@@ -1,10 +1,11 @@
-import { mkdirSync, writeFileSync, readFileSync, rmSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { mkdirSync, writeFileSync, readFileSync, rmSync, statSync } from "node:fs";
+import { dirname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadRun } from "./loader.js";
 import { computeStats, type Stats } from "./stats.js";
 import { buildFigures, serializeFigures, type Figures } from "./figures.js";
 import { buildCharts, type ChartArtifact } from "./charts.js";
+import { contrastRatio, LIGHT, DARK } from "./palette.js";
 import {
   assembleArticleBody,
   renderPage,
@@ -101,11 +102,67 @@ function parseArgs(argv: string[]): BuildOptions {
   return options;
 }
 
+const AA_TEXT = 4.5;
+
+function fmtBytes(n: number): string {
+  if (n < 1024) return `${n} B`;
+  return `${(n / 1024).toFixed(1)} KiB`;
+}
+
+function sizeOf(path: string): string {
+  return fmtBytes(statSync(path).size);
+}
+
+function rel(from: string, to: string): string {
+  const r = relative(from, to);
+  return r.startsWith("..") ? to : r;
+}
+
 function main(): void {
   const options = parseArgs(process.argv.slice(2));
+  const runPath = options.runPath ?? DEFAULT_RUN;
   const result = runBuild(options);
-  console.log("Eight Agents, One Ticket -- build complete");
-  console.log(`output dir: ${result.outDir}`);
+  const { stats, figures, charts, outDir } = result;
+
+  const log = (line: string): void => console.log(line);
+
+  log("Eight Agents, One Ticket -- static blog build");
+  log("");
+  log(`Run record   : ${rel(PROJECT_DIR, runPath)}`);
+  log(`  runId      : ${stats.runId}`);
+  log(`  lanes      : ${stats.laneCount} (${stats.greenCount} green, ${stats.excludedCount} excluded)`);
+  log(`  winner     : ${stats.winner} (rank ${stats.winnerRank})`);
+  log(`  obvious    : ${stats.obviousStrategy} (rank ${stats.obviousRank})`);
+  log("");
+  log(`Figures      : ${Object.keys(figures).length} computed from the run record`);
+  log(`Charts       : ${charts.length} rendered as inline SVG`);
+  for (const c of charts) {
+    log(`  - ${c.id}.svg`);
+  }
+  log("");
+
+  // WCAG AA contrast gate for chart text against its own surface, both themes.
+  const lightCr = contrastRatio(LIGHT.ink, LIGHT.surface);
+  const darkCr = contrastRatio(DARK.ink, DARK.surface);
+  const verdict = (cr: number): string => (cr >= AA_TEXT ? "PASS" : "FAIL");
+  log(
+    `WCAG AA text : light ${lightCr.toFixed(1)}:1 ${verdict(lightCr)}, ` +
+      `dark ${darkCr.toFixed(1)}:1 ${verdict(darkCr)} (threshold ${AA_TEXT}:1)`,
+  );
+  log("");
+
+  log(`Written to   : ${rel(PROJECT_DIR, outDir)}/`);
+  log(`  article.html   ${sizeOf(result.htmlPath)}`);
+  log(`  figures.json   ${sizeOf(result.figuresPath)}`);
+  for (const p of result.chartPaths) {
+    log(`  charts/${p.replace(/.*\//, "").padEnd(9)}   ${sizeOf(p)}`);
+  }
+  log("");
+  log("Build complete. Serve with: pnpm server");
+
+  if (lightCr < AA_TEXT || darkCr < AA_TEXT) {
+    throw new Error("WCAG AA contrast gate failed");
+  }
 }
 
 const invokedPath = process.argv[1] ? resolve(process.argv[1]) : "";

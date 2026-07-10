@@ -59,7 +59,11 @@ function main(): void {
   const app = createApp();
   const server = createServer(toNodeListener(app));
   server.listen(port, () => {
-    process.stdout.write(`blog-site serving ${DIST_DIR} on http://0.0.0.0:${port}\n`);
+    const url = `http://localhost:${port}`;
+    process.stdout.write(`Eight Agents, One Ticket -- static preview server\n`);
+    process.stdout.write(`serving ${DIST_DIR}\n`);
+    process.stdout.write(`serving article at ${url}\n`);
+    process.stdout.write(`press Ctrl+C to stop\n`);
   });
 }
 
