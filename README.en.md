@@ -1,5 +1,7 @@
 # Eight Agents, One Ticket
 
+> This code was generated with **Antigravity 2.0**, and reviewed and refined with **Antigravity IDE**.
+
 Language: **English** | [Espanol](./README.md)
 
 A data-driven, reproducible writeup that turns one real multi-agent tournament run

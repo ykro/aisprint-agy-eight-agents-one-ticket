@@ -1,5 +1,7 @@
 # Ocho agentes, un ticket
 
+> Este codigo se genero con **Antigravity 2.0**, y se reviso y refino con **Antigravity IDE**.
+
 Idioma: **Espanol** | [English](./README.en.md)
 
 Un articulo reproducible y basado en datos que convierte una unica corrida real de
@@ -43,7 +45,7 @@ La corrida analizada aqui (`tournament-2026-07-08-a1b2c3`) fue producida por el
 construyeron los worktrees y se juzgaron los puntajes.
 
 **Este generador no ejecuta ningun modelo de ningun tipo.** No llama a Gemini, a
-Vertex AI ni al SDK de Antigravity. Aqui no hay un "harness" de agentes en tiempo de
+Vertex AI ni al Antigravity SDK. Aqui no hay un "harness" de agentes en tiempo de
 ejecucion. Es una transformacion pura y determinista: entra JSON, sale HTML. El
 archivo `src/harness.ts` es *solo* tres definiciones de tipos de TypeScript en linea
 (`RubricWeights`, `LaneRecord`, `RunRecord`) que describen la forma del registro de
