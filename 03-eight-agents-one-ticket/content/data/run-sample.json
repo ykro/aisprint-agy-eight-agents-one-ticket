@@ -1,0 +1,80 @@
+{
+  "runId": "tournament-2026-07-08-a1b2c3",
+  "spec": "moneysplit: split an integer amount of cents across N weighted recipients under a configurable rounding mode, preserving an exact-sum invariant; add formatCurrency and runningBalance.",
+  "createdAt": "2026-07-08T15:12:00.000Z",
+  "weights": {
+    "tests": 0.4,
+    "diff": 0.2,
+    "complexity": 0.2,
+    "benchmark": 0.2
+  },
+  "winner": "type-safe",
+  "lanes": [
+    {
+      "strategy": "minimal-diff",
+      "passRate": 1.0,
+      "diffLines": 12,
+      "complexity": 8,
+      "benchMedianMs": 4.2,
+      "tokenCost": 18420,
+      "timeToFirstGreenMs": 42310,
+      "score": 0.78,
+      "status": "green"
+    },
+    {
+      "strategy": "performance-first",
+      "passRate": 1.0,
+      "diffLines": 64,
+      "complexity": 21,
+      "benchMedianMs": 2.1,
+      "tokenCost": 41250,
+      "timeToFirstGreenMs": 88740,
+      "score": 0.71,
+      "status": "green"
+    },
+    {
+      "strategy": "type-safe",
+      "passRate": 1.0,
+      "diffLines": 28,
+      "complexity": 11,
+      "benchMedianMs": 3.4,
+      "tokenCost": 26010,
+      "timeToFirstGreenMs": 60920,
+      "score": 0.86,
+      "status": "green"
+    },
+    {
+      "strategy": "zero-dependency",
+      "passRate": 1.0,
+      "diffLines": 22,
+      "complexity": 13,
+      "benchMedianMs": 4.0,
+      "tokenCost": 23180,
+      "timeToFirstGreenMs": 54600,
+      "score": 0.80,
+      "status": "green"
+    },
+    {
+      "strategy": "most-readable",
+      "passRate": 0.92,
+      "diffLines": 35,
+      "complexity": 9,
+      "benchMedianMs": 4.6,
+      "tokenCost": 24870,
+      "timeToFirstGreenMs": 57880,
+      "score": 0.69,
+      "status": "green"
+    },
+    {
+      "strategy": "most-defensive",
+      "passRate": 0.6,
+      "diffLines": 96,
+      "complexity": 34,
+      "benchMedianMs": 5.8,
+      "tokenCost": 52640,
+      "timeToFirstGreenMs": -1,
+      "score": 0.1,
+      "status": "red"
+    }
+  ]
+}

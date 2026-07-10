@@ -1,0 +1,9 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./shared/moneysplit" },
+    { "path": "./shared/harness-core" },
+    { "path": "./shared/gcp" },
+    { "path": "./03-eight-agents-one-ticket" }
+  ]
+}

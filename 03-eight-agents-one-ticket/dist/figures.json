@@ -1,0 +1,240 @@
+{
+  "agents.count": {
+    "id": "agents.count",
+    "value": 8,
+    "formatted": "8",
+    "unit": "agents",
+    "source": "computed"
+  },
+  "run.id": {
+    "id": "run.id",
+    "value": "tournament-2026-07-08-a1b2c3",
+    "formatted": "tournament-2026-07-08-a1b2c3",
+    "unit": "",
+    "source": "run.runId"
+  },
+  "winner.strategy": {
+    "id": "winner.strategy",
+    "value": "type-safe",
+    "formatted": "type-safe",
+    "unit": "",
+    "source": "run.winner"
+  },
+  "obvious.strategy": {
+    "id": "obvious.strategy",
+    "value": "minimal-diff",
+    "formatted": "minimal-diff",
+    "unit": "",
+    "source": "constant"
+  },
+  "lanes.count": {
+    "id": "lanes.count",
+    "value": 6,
+    "formatted": "6",
+    "unit": "lanes",
+    "source": "run.lanes.length"
+  },
+  "green.count": {
+    "id": "green.count",
+    "value": 5,
+    "formatted": "5",
+    "unit": "lanes",
+    "source": "computed"
+  },
+  "excluded.count": {
+    "id": "excluded.count",
+    "value": 1,
+    "formatted": "1",
+    "unit": "lanes",
+    "source": "computed"
+  },
+  "cohort.n": {
+    "id": "cohort.n",
+    "value": 1,
+    "formatted": "n=1",
+    "unit": "runs",
+    "source": "computed"
+  },
+  "winner.rankOrdinal": {
+    "id": "winner.rankOrdinal",
+    "value": 1,
+    "formatted": "1st",
+    "unit": "rank",
+    "source": "computed"
+  },
+  "obvious.rankOrdinal": {
+    "id": "obvious.rankOrdinal",
+    "value": 3,
+    "formatted": "3rd",
+    "unit": "rank",
+    "source": "computed"
+  },
+  "rubric.tests": {
+    "id": "rubric.tests",
+    "value": 0.4,
+    "formatted": "0.40",
+    "unit": "",
+    "source": "run.weights.tests"
+  },
+  "rubric.diff": {
+    "id": "rubric.diff",
+    "value": 0.2,
+    "formatted": "0.20",
+    "unit": "",
+    "source": "run.weights.diff"
+  },
+  "rubric.complexity": {
+    "id": "rubric.complexity",
+    "value": 0.2,
+    "formatted": "0.20",
+    "unit": "",
+    "source": "run.weights.complexity"
+  },
+  "rubric.bench": {
+    "id": "rubric.bench",
+    "value": 0.2,
+    "formatted": "0.20",
+    "unit": "",
+    "source": "run.weights.benchmark"
+  },
+  "timeToGreen.min": {
+    "id": "timeToGreen.min",
+    "value": 42310,
+    "formatted": "0:42",
+    "unit": "m:ss",
+    "source": "run.lanes[0].timeToFirstGreenMs"
+  },
+  "timeToGreen.minStrategy": {
+    "id": "timeToGreen.minStrategy",
+    "value": "minimal-diff",
+    "formatted": "minimal-diff",
+    "unit": "",
+    "source": "run.lanes[0].strategy"
+  },
+  "timeToGreen.max": {
+    "id": "timeToGreen.max",
+    "value": 88740,
+    "formatted": "1:28",
+    "unit": "m:ss",
+    "source": "run.lanes[1].timeToFirstGreenMs"
+  },
+  "timeToGreen.maxStrategy": {
+    "id": "timeToGreen.maxStrategy",
+    "value": "performance-first",
+    "formatted": "performance-first",
+    "unit": "",
+    "source": "run.lanes[1].strategy"
+  },
+  "winner.timeToGreen": {
+    "id": "winner.timeToGreen",
+    "value": 60920,
+    "formatted": "1:00",
+    "unit": "m:ss",
+    "source": "run.lanes[2].timeToFirstGreenMs"
+  },
+  "diff.min": {
+    "id": "diff.min",
+    "value": 12,
+    "formatted": "12",
+    "unit": "loc",
+    "source": "run.lanes[0].diffLines"
+  },
+  "diff.minStrategy": {
+    "id": "diff.minStrategy",
+    "value": "minimal-diff",
+    "formatted": "minimal-diff",
+    "unit": "",
+    "source": "run.lanes[0].strategy"
+  },
+  "diff.max": {
+    "id": "diff.max",
+    "value": 96,
+    "formatted": "96",
+    "unit": "loc",
+    "source": "run.lanes[5].diffLines"
+  },
+  "diff.maxStrategy": {
+    "id": "diff.maxStrategy",
+    "value": "most-defensive",
+    "formatted": "most-defensive",
+    "unit": "",
+    "source": "run.lanes[5].strategy"
+  },
+  "diff.spreadRatio": {
+    "id": "diff.spreadRatio",
+    "value": 8,
+    "formatted": "8.0x",
+    "unit": "",
+    "source": "computed"
+  },
+  "token.min": {
+    "id": "token.min",
+    "value": 18420,
+    "formatted": "18,420",
+    "unit": "tokens",
+    "source": "run.lanes[0].tokenCost"
+  },
+  "token.minStrategy": {
+    "id": "token.minStrategy",
+    "value": "minimal-diff",
+    "formatted": "minimal-diff",
+    "unit": "",
+    "source": "run.lanes[0].strategy"
+  },
+  "token.max": {
+    "id": "token.max",
+    "value": 52640,
+    "formatted": "52,640",
+    "unit": "tokens",
+    "source": "run.lanes[5].tokenCost"
+  },
+  "token.maxStrategy": {
+    "id": "token.maxStrategy",
+    "value": "most-defensive",
+    "formatted": "most-defensive",
+    "unit": "",
+    "source": "run.lanes[5].strategy"
+  },
+  "token.spreadRatio": {
+    "id": "token.spreadRatio",
+    "value": 2.8577633007600434,
+    "formatted": "2.9x",
+    "unit": "",
+    "source": "computed"
+  },
+  "winner.score": {
+    "id": "winner.score",
+    "value": 0.86,
+    "formatted": "0.86",
+    "unit": "",
+    "source": "run.lanes[2].score"
+  },
+  "obvious.score": {
+    "id": "obvious.score",
+    "value": 0.78,
+    "formatted": "0.78",
+    "unit": "",
+    "source": "run.lanes[0].score"
+  },
+  "winner.benchMs": {
+    "id": "winner.benchMs",
+    "value": 3.4,
+    "formatted": "3.4",
+    "unit": "ms",
+    "source": "run.lanes[2].benchMedianMs"
+  },
+  "obvious.benchMs": {
+    "id": "obvious.benchMs",
+    "value": 4.2,
+    "formatted": "4.2",
+    "unit": "ms",
+    "source": "run.lanes[0].benchMedianMs"
+  },
+  "winner.benchDeltaPct": {
+    "id": "winner.benchDeltaPct",
+    "value": -19.04761904761905,
+    "formatted": "-19.0%",
+    "unit": "%",
+    "source": "computed"
+  }
+}

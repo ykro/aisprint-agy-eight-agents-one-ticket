@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Eight Agents, One Ticket</title>
+<style>:root{--bg:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--rule:#e1e0d9;--accent:#256abf;--code-bg:#f0efec;}:root[data-theme="dark"]{--bg:#0d0d0d;--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--rule:#2c2c2a;--accent:#3987e5;--code-bg:#242422;}@media (prefers-color-scheme: dark){:root{--bg:#0d0d0d;--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--rule:#2c2c2a;--accent:#3987e5;--code-bg:#242422;}}*{box-sizing:border-box;}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,sans-serif;line-height:1.65;}.page-head{display:flex;justify-content:flex-end;padding:16px 24px;}#theme-toggle{font:inherit;font-size:13px;color:var(--ink2);background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:6px 12px;cursor:pointer;}main{max-width:760px;margin:0 auto;padding:0 24px 96px;}h1{font-size:34px;line-height:1.15;letter-spacing:-0.01em;margin:8px 0 24px;}h2{font-size:22px;margin:48px 0 12px;padding-top:8px;border-top:1px solid var(--rule);}p{margin:0 0 18px;color:var(--ink);font-size:17px;}code{font-family:monospace;font-size:0.85em;background:var(--code-bg);padding:1px 5px;border-radius:4px;}.chart{margin:28px 0 12px;padding:16px;background:var(--surface);border:1px solid var(--rule);border-radius:12px;}.chart-svg svg{width:100%;height:auto;max-width:100%;display:block;}figcaption{margin-top:10px;font-size:13px;color:var(--ink2);}.chart-data{margin-top:12px;}.chart-data summary{cursor:pointer;font-size:13px;color:var(--accent);}table.chart-table{border-collapse:collapse;width:100%;margin-top:12px;font-size:14px;}table.chart-table caption{text-align:left;color:var(--muted);font-size:13px;margin-bottom:6px;}table.chart-table th,table.chart-table td{border-bottom:1px solid var(--rule);padding:6px 10px;text-align:left;}table.chart-table th[scope='col']{color:var(--ink2);font-weight:600;}table.chart-table .num{text-align:right;font-variant-numeric:tabular-nums;}</style>
+</head>
+<body>
+<header class="page-head">
+<button type="button" id="theme-toggle" aria-label="Toggle light and dark theme">Toggle theme</button>
+</header>
+<main>
+<article>
+<h1>Eight Agents, One Ticket</h1>
+<p>One ticket. 8 agents. The strategy an experienced engineer would have reached for by intuition -- minimal-diff, the smallest and cheapest change -- finished 3rd. The lane that won was type-safe.</p>
+<p>This is a measured writeup of a single Implementation Tournament run (<code>tournament-2026-07-08-a1b2c3</code>). A controller read one ordinary ticket and fanned it out to several strategy subagents, each building the same feature in an isolated worktree; a judge then scored the passing lanes against a fixed rubric and picked the winner. Every number below is injected from the run's captured metrics, so no figure in this prose is hand-typed. The run supplied here is a single one (n=1), so the finding is reported as one run's result, not a rate.</p>
+<h2 id="method">Method</h2>
+<p>The run built 6 lanes: 5 reached green and 1 was excluded for failing its tests. Each lane records the fields this article reads: time to first green, diff size in lines changed, cyclomatic complexity, benchmark median, token cost, pass rate, and a final rubric score. The judge's rubric is stated up front so the verdict is auditable: tests weigh 0.40, diff size 0.20, complexity 0.20, and benchmark 0.20. The winner, type-safe, ranked 1st on that rubric.</p>
+<h2 id="time-to-first-green">Time to first green</h2>
+<figure class="chart" id="chart1">
+<div class="chart-svg"><svg class="viz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 348" width="760" height="348" role="img" aria-label="Time to first green by lane." font-family="system-ui, -apple-system, sans-serif">
+<style>.viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}@media (prefers-color-scheme: dark){.viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}}:root[data-theme="dark"] .viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}:root[data-theme="light"] .viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}</style>
+<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--surface)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="2"/></pattern></defs>
+<title>Time to first green by lane.</title>
+<rect x="0" y="0" width="760" height="348" fill="var(--surface)"/>
+<text x="16" y="28" fill="var(--ink)" font-size="17" font-weight="600">Time to first all-green, by lane</text>
+<text x="16" y="48" fill="var(--ink2)" font-size="12.5">Elapsed from fan-out to the lane's first passing test run. Winner ringed.</text>
+<line x1="184" y1="66" x2="184" y2="302" stroke="var(--axis)" stroke-width="1"/>
+<text x="172" y="97" text-anchor="end" fill="var(--ink)" font-size="13">minimal-diff</text>
+<rect x="184" y="84" width="219.32" height="18" rx="4" fill="var(--bar)"/>
+<text x="413.32" y="97" fill="var(--ink2)" font-size="13" font-weight="600">0:42</text>
+<text x="172" y="135" text-anchor="end" fill="var(--ink)" font-size="13">zero-dependency</text>
+<rect x="184" y="122" width="283.03" height="18" rx="4" fill="var(--bar)"/>
+<text x="477.03" y="135" fill="var(--ink2)" font-size="13" font-weight="600">0:54</text>
+<text x="172" y="173" text-anchor="end" fill="var(--ink)" font-size="13">most-readable</text>
+<rect x="184" y="160" width="300.03" height="18" rx="4" fill="var(--bar)"/>
+<text x="494.03" y="173" fill="var(--ink2)" font-size="13" font-weight="600">0:57</text>
+<text x="172" y="211" text-anchor="end" fill="var(--ink)" font-size="13">type-safe</text>
+<rect x="184" y="198" width="315.79" height="18" rx="4" fill="var(--bar)"/>
+<rect x="182" y="195" width="319.79" height="24" rx="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
+<text x="509.79" y="211" fill="var(--ink2)" font-size="13" font-weight="600">1:00</text>
+<text x="551.79" y="211" fill="var(--muted)" font-size="12">winner</text>
+<text x="172" y="249" text-anchor="end" fill="var(--ink)" font-size="13">performance-first</text>
+<rect x="184" y="236" width="460" height="18" rx="4" fill="var(--bar)"/>
+<text x="654" y="249" fill="var(--ink2)" font-size="13" font-weight="600">1:28</text>
+<text x="172" y="287" text-anchor="end" fill="var(--ink)" font-size="13">most-defensive</text>
+<rect x="184" y="274" width="54" height="18" rx="4" fill="url(#hatch)" stroke="var(--axis)" stroke-width="1"/>
+<text x="248" y="287" fill="var(--ink2)" font-size="13">did not green</text>
+<text x="414" y="332" text-anchor="middle" fill="var(--muted)" font-size="12">elapsed time (m:ss)</text>
+</svg></div>
+<figcaption>Figure 1. Time to first green by lane. Rendered from run <code>tournament-2026-07-08-a1b2c3</code>.</figcaption>
+<details class="chart-data"><summary>Show data table</summary><table class="chart-table"><caption>Time to first green by lane</caption><thead><tr><th scope="col" class="">Strategy</th><th scope="col" class="num">Time to first green</th><th scope="col" class="">Status</th></tr></thead><tbody><tr><th scope="row">minimal-diff</th><td class="num">&nbsp;0:42</td><td>&nbsp;green</td></tr><tr><th scope="row">zero-dependency</th><td class="num">&nbsp;0:54</td><td>&nbsp;green</td></tr><tr><th scope="row">most-readable</th><td class="num">&nbsp;0:57</td><td>&nbsp;green</td></tr><tr><th scope="row">type-safe</th><td class="num">&nbsp;1:00</td><td>&nbsp;green (winner)</td></tr><tr><th scope="row">performance-first</th><td class="num">&nbsp;1:28</td><td>&nbsp;green</td></tr><tr><th scope="row">most-defensive</th><td class="num">&nbsp;did not green</td><td>&nbsp;excluded</td></tr></tbody></table></details>
+</figure>
+<p>The lanes reached green at very different times, from minimal-diff at 0:42 to performance-first at 1:28. The eventual winner, type-safe, went green at 1:00 -- one of the slower lanes, not the first. First green is not best: the lane that crossed the line earliest is not the one the judge merged.</p>
+<h2 id="diff-size-per-strategy">Diff size per strategy</h2>
+<figure class="chart" id="chart2">
+<div class="chart-svg"><svg class="viz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 348" width="760" height="348" role="img" aria-label="Diff size in lines changed per strategy." font-family="system-ui, -apple-system, sans-serif">
+<style>.viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}@media (prefers-color-scheme: dark){.viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}}:root[data-theme="dark"] .viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}:root[data-theme="light"] .viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}</style>
+<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--surface)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="2"/></pattern></defs>
+<title>Diff size in lines changed per strategy.</title>
+<rect x="0" y="0" width="760" height="348" fill="var(--surface)"/>
+<text x="16" y="28" fill="var(--ink)" font-size="17" font-weight="600">Diff size per strategy</text>
+<text x="16" y="48" fill="var(--ink2)" font-size="12.5">Lines changed. Spread 8.0x leanest to largest. Excluded lane hatched.</text>
+<line x1="184" y1="66" x2="184" y2="302" stroke="var(--axis)" stroke-width="1"/>
+<text x="172" y="97" text-anchor="end" fill="var(--ink)" font-size="13">minimal-diff</text>
+<rect x="184" y="84" width="57.5" height="18" rx="4" fill="var(--bar)"/>
+<text x="251.5" y="97" fill="var(--ink2)" font-size="13" font-weight="600">12 loc</text>
+<text x="172" y="135" text-anchor="end" fill="var(--ink)" font-size="13">zero-dependency</text>
+<rect x="184" y="122" width="105.42" height="18" rx="4" fill="var(--bar)"/>
+<text x="299.42" y="135" fill="var(--ink2)" font-size="13" font-weight="600">22 loc</text>
+<text x="172" y="173" text-anchor="end" fill="var(--ink)" font-size="13">type-safe</text>
+<rect x="184" y="160" width="134.17" height="18" rx="4" fill="var(--bar)"/>
+<rect x="182" y="157" width="138.17" height="24" rx="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
+<text x="328.17" y="173" fill="var(--ink2)" font-size="13" font-weight="600">28 loc</text>
+<text x="386.17" y="173" fill="var(--muted)" font-size="12">winner</text>
+<text x="172" y="211" text-anchor="end" fill="var(--ink)" font-size="13">most-readable</text>
+<rect x="184" y="198" width="167.71" height="18" rx="4" fill="var(--bar)"/>
+<text x="361.71" y="211" fill="var(--ink2)" font-size="13" font-weight="600">35 loc</text>
+<text x="172" y="249" text-anchor="end" fill="var(--ink)" font-size="13">performance-first</text>
+<rect x="184" y="236" width="306.67" height="18" rx="4" fill="var(--bar)"/>
+<text x="500.67" y="249" fill="var(--ink2)" font-size="13" font-weight="600">64 loc</text>
+<text x="172" y="287" text-anchor="end" fill="var(--ink)" font-size="13">most-defensive</text>
+<rect x="184" y="274" width="460" height="18" rx="4" fill="url(#hatch)"/>
+<rect x="184" y="274" width="460" height="18" rx="4" fill="none" stroke="var(--axis)" stroke-width="1"/>
+<text x="654" y="287" fill="var(--ink2)" font-size="13" font-weight="600">96 loc</text>
+<text x="414" y="332" text-anchor="middle" fill="var(--muted)" font-size="12">lines changed (loc)</text>
+</svg></div>
+<figcaption>Figure 2. Diff size per strategy, sorted ascending. Rendered from run <code>tournament-2026-07-08-a1b2c3</code>.</figcaption>
+<details class="chart-data"><summary>Show data table</summary><table class="chart-table"><caption>Diff size per strategy</caption><thead><tr><th scope="col" class="">Strategy</th><th scope="col" class="num">Lines changed</th><th scope="col" class="">Status</th></tr></thead><tbody><tr><th scope="row">minimal-diff</th><td class="num">&nbsp;12</td><td>&nbsp;green</td></tr><tr><th scope="row">zero-dependency</th><td class="num">&nbsp;22</td><td>&nbsp;green</td></tr><tr><th scope="row">type-safe</th><td class="num">&nbsp;28</td><td>&nbsp;green (winner)</td></tr><tr><th scope="row">most-readable</th><td class="num">&nbsp;35</td><td>&nbsp;green</td></tr><tr><th scope="row">performance-first</th><td class="num">&nbsp;64</td><td>&nbsp;green</td></tr><tr><th scope="row">most-defensive</th><td class="num">&nbsp;96</td><td>&nbsp;excluded</td></tr></tbody></table></details>
+</figure>
+<p>Eight agents solve one ticket very differently. The leanest change, minimal-diff, touched 12 lines; the largest, most-defensive, touched 96 -- a spread of 8.0x for the same ticket. The smallest diff is the intuitive pick, yet a smaller diff did not translate into a higher rank.</p>
+<h2 id="token-cost-per-lane">Token cost per lane</h2>
+<figure class="chart" id="chart3">
+<div class="chart-svg"><svg class="viz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 348" width="760" height="348" role="img" aria-label="Token cost per lane." font-family="system-ui, -apple-system, sans-serif">
+<style>.viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}@media (prefers-color-scheme: dark){.viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}}:root[data-theme="dark"] .viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}:root[data-theme="light"] .viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}</style>
+<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--surface)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="2"/></pattern></defs>
+<title>Token cost per lane.</title>
+<rect x="0" y="0" width="760" height="348" fill="var(--surface)"/>
+<text x="16" y="28" fill="var(--ink)" font-size="17" font-weight="600">Token cost per lane</text>
+<text x="16" y="48" fill="var(--ink2)" font-size="12.5">Total tokens per lane subagent. Spread 2.9x cheapest to most expensive.</text>
+<line x1="184" y1="66" x2="184" y2="302" stroke="var(--axis)" stroke-width="1"/>
+<text x="172" y="97" text-anchor="end" fill="var(--ink)" font-size="13">minimal-diff</text>
+<rect x="184" y="84" width="160.97" height="18" rx="4" fill="var(--bar)"/>
+<text x="354.97" y="97" fill="var(--ink2)" font-size="13" font-weight="600">18,420</text>
+<text x="172" y="135" text-anchor="end" fill="var(--ink)" font-size="13">zero-dependency</text>
+<rect x="184" y="122" width="202.56" height="18" rx="4" fill="var(--bar)"/>
+<text x="396.56" y="135" fill="var(--ink2)" font-size="13" font-weight="600">23,180</text>
+<text x="172" y="173" text-anchor="end" fill="var(--ink)" font-size="13">most-readable</text>
+<rect x="184" y="160" width="217.33" height="18" rx="4" fill="var(--bar)"/>
+<text x="411.33" y="173" fill="var(--ink2)" font-size="13" font-weight="600">24,870</text>
+<text x="172" y="211" text-anchor="end" fill="var(--ink)" font-size="13">type-safe</text>
+<rect x="184" y="198" width="227.29" height="18" rx="4" fill="var(--bar)"/>
+<rect x="182" y="195" width="231.29" height="24" rx="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
+<text x="421.29" y="211" fill="var(--ink2)" font-size="13" font-weight="600">26,010</text>
+<text x="479.29" y="211" fill="var(--muted)" font-size="12">winner</text>
+<text x="172" y="249" text-anchor="end" fill="var(--ink)" font-size="13">performance-first</text>
+<rect x="184" y="236" width="360.47" height="18" rx="4" fill="var(--bar)"/>
+<text x="554.47" y="249" fill="var(--ink2)" font-size="13" font-weight="600">41,250</text>
+<text x="172" y="287" text-anchor="end" fill="var(--ink)" font-size="13">most-defensive</text>
+<rect x="184" y="274" width="460" height="18" rx="4" fill="url(#hatch)"/>
+<rect x="184" y="274" width="460" height="18" rx="4" fill="none" stroke="var(--axis)" stroke-width="1"/>
+<text x="654" y="287" fill="var(--ink2)" font-size="13" font-weight="600">52,640</text>
+<text x="414" y="332" text-anchor="middle" fill="var(--muted)" font-size="12">total tokens</text>
+</svg></div>
+<figcaption>Figure 3. Token cost per lane, sorted ascending. Rendered from run <code>tournament-2026-07-08-a1b2c3</code>.</figcaption>
+<details class="chart-data"><summary>Show data table</summary><table class="chart-table"><caption>Token cost per lane</caption><thead><tr><th scope="col" class="">Strategy</th><th scope="col" class="num">Tokens</th><th scope="col" class="">Status</th></tr></thead><tbody><tr><th scope="row">minimal-diff</th><td class="num">&nbsp;18,420</td><td>&nbsp;green</td></tr><tr><th scope="row">zero-dependency</th><td class="num">&nbsp;23,180</td><td>&nbsp;green</td></tr><tr><th scope="row">most-readable</th><td class="num">&nbsp;24,870</td><td>&nbsp;green</td></tr><tr><th scope="row">type-safe</th><td class="num">&nbsp;26,010</td><td>&nbsp;green (winner)</td></tr><tr><th scope="row">performance-first</th><td class="num">&nbsp;41,250</td><td>&nbsp;green</td></tr><tr><th scope="row">most-defensive</th><td class="num">&nbsp;52,640</td><td>&nbsp;excluded</td></tr></tbody></table></details>
+</figure>
+<p>Parallel exploration has a price. The cheapest lane, minimal-diff, spent 18,420 tokens; the most expensive, most-defensive, spent 52,640 -- a 2.9x spread. The cheapest lane is at one end and the most expensive at the other, and neither was the winner: spend did not buy the win, and cheapness did not secure it.</p>
+<h2 id="the-counterintuitive-finding">The counterintuitive finding</h2>
+<figure class="chart" id="chart4">
+<div class="chart-svg"><svg class="viz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 310" width="760" height="310" role="img" aria-label="Final rubric score per green lane." font-family="system-ui, -apple-system, sans-serif">
+<style>.viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}@media (prefers-color-scheme: dark){.viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}}:root[data-theme="dark"] .viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}:root[data-theme="light"] .viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}</style>
+<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--surface)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="2"/></pattern></defs>
+<title>Final rubric score per green lane.</title>
+<rect x="0" y="0" width="760" height="310" fill="var(--surface)"/>
+<text x="16" y="28" fill="var(--ink)" font-size="17" font-weight="600">Final rubric score: the obvious pick lost</text>
+<text x="16" y="48" fill="var(--ink2)" font-size="12.5">n=1, single run. Winner in accent; the obvious minimal-diff pick ranked 3rd.</text>
+<line x1="184" y1="66" x2="184" y2="264" stroke="var(--axis)" stroke-width="1"/>
+<text x="172" y="97" text-anchor="end" fill="var(--ink)" font-size="13">type-safe</text>
+<rect x="184" y="84" width="460" height="18" rx="4" fill="var(--accent)"/>
+<rect x="182" y="81" width="464" height="24" rx="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
+<text x="654" y="97" fill="var(--ink2)" font-size="13" font-weight="600">0.86</text>
+<text x="696" y="97" fill="var(--muted)" font-size="12">winner</text>
+<text x="172" y="135" text-anchor="end" fill="var(--ink)" font-size="13">zero-dependency</text>
+<rect x="184" y="122" width="427.91" height="18" rx="4" fill="var(--deemph)"/>
+<text x="621.91" y="135" fill="var(--ink2)" font-size="13" font-weight="600">0.80</text>
+<text x="172" y="173" text-anchor="end" fill="var(--ink)" font-size="13">minimal-diff</text>
+<rect x="184" y="160" width="417.21" height="18" rx="4" fill="var(--deemph)"/>
+<text x="611.21" y="173" fill="var(--ink2)" font-size="13" font-weight="600">0.78</text>
+<text x="653.21" y="173" fill="var(--muted)" font-size="12">obvious pick, 3rd</text>
+<text x="172" y="211" text-anchor="end" fill="var(--ink)" font-size="13">performance-first</text>
+<rect x="184" y="198" width="379.77" height="18" rx="4" fill="var(--deemph)"/>
+<text x="573.77" y="211" fill="var(--ink2)" font-size="13" font-weight="600">0.71</text>
+<text x="172" y="249" text-anchor="end" fill="var(--ink)" font-size="13">most-readable</text>
+<rect x="184" y="236" width="369.07" height="18" rx="4" fill="var(--deemph)"/>
+<text x="563.07" y="249" fill="var(--ink2)" font-size="13" font-weight="600">0.69</text>
+<text x="414" y="294" text-anchor="middle" fill="var(--muted)" font-size="12">final rubric score (higher is better)</text>
+</svg></div>
+<figcaption>Figure 4. Final rubric score per green lane. Rendered from run <code>tournament-2026-07-08-a1b2c3</code>.</figcaption>
+<details class="chart-data"><summary>Show data table</summary><table class="chart-table"><caption>Final rubric score per green lane</caption><thead><tr><th scope="col" class="num">Rank</th><th scope="col" class="">Strategy</th><th scope="col" class="num">Score</th></tr></thead><tbody><tr><th scope="row" class="num">1</th><td>&nbsp;type-safe (winner)</td><td class="num">&nbsp;0.86</td></tr><tr><th scope="row" class="num">2</th><td>&nbsp;zero-dependency</td><td class="num">&nbsp;0.80</td></tr><tr><th scope="row" class="num">3</th><td>&nbsp;minimal-diff (obvious pick)</td><td class="num">&nbsp;0.78</td></tr><tr><th scope="row" class="num">4</th><td>&nbsp;performance-first</td><td class="num">&nbsp;0.71</td></tr><tr><th scope="row" class="num">5</th><td>&nbsp;most-readable</td><td class="num">&nbsp;0.69</td></tr></tbody></table></details>
+</figure>
+<p>Here is the point. The obvious minimal-diff pick scored 0.78 and placed 3rd of the green lanes. The winner, type-safe, scored 0.86 and earned its rank in part on a measured benchmark: its median of 3.4 milliseconds came in -19.0% against the obvious lane's 4.2 milliseconds. That gap is a real improvement the small diff never attempted. With a single run (n=1) this is one result, not a win rate; the honest claim is that on this ticket the obvious strategy lost.</p>
+<h2 id="the-safety-argument">The safety argument</h2>
+<p>None of this is safe to run unattended without isolation. Each lane builds in its own worktree, so no lane can corrupt the trunk or another lane. A per-lane token budget and an accumulation monitor bound both blast radius and spend. A red lane is excluded, never merged, and the winner is re-verified green before the fast-forward. Concurrency without isolation is a hazard; concurrency with it is a control. That is why the excluded lane appears in the charts as an excluded marker rather than a silent omission.</p>
+<h2 id="takeaways">Takeaways</h2>
+<p>Running several divergent implementations in parallel and letting a judge pick on measured evidence is a quality control, not just a speed hack. The implementation a senior engineer would reach for by intuition is frequently not the one that wins on the rubric, and the cheapest way to learn that is to run the alternatives at once. Read the rubric weights as a policy lever: change what the organization values and the winner can change with it. The tournament is worth the token spend exactly when correctness matters more than the tokens, which is precisely when an architect is most reluctant to trust autonomous tooling.</p>
+</article>
+</main>
+<script>(function(){var b=document.getElementById('theme-toggle');if(!b)return;b.addEventListener('click',function(){var r=document.documentElement;var cur=r.getAttribute('data-theme');var next=cur==='dark'?'light':cur==='light'?'dark':(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark');r.setAttribute('data-theme',next);});})();</script>
+</body>
+</html>

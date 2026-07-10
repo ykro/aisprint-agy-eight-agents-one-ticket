@@ -1,0 +1,31 @@
+<svg class="viz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 348" width="760" height="348" role="img" aria-label="Token cost per lane." font-family="system-ui, -apple-system, sans-serif">
+<style>.viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}@media (prefers-color-scheme: dark){.viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}}:root[data-theme="dark"] .viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}:root[data-theme="light"] .viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}</style>
+<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--surface)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="2"/></pattern></defs>
+<title>Token cost per lane.</title>
+<rect x="0" y="0" width="760" height="348" fill="var(--surface)"/>
+<text x="16" y="28" fill="var(--ink)" font-size="17" font-weight="600">Token cost per lane</text>
+<text x="16" y="48" fill="var(--ink2)" font-size="12.5">Total tokens per lane subagent. Spread 2.9x cheapest to most expensive.</text>
+<line x1="184" y1="66" x2="184" y2="302" stroke="var(--axis)" stroke-width="1"/>
+<text x="172" y="97" text-anchor="end" fill="var(--ink)" font-size="13">minimal-diff</text>
+<rect x="184" y="84" width="160.97" height="18" rx="4" fill="var(--bar)"/>
+<text x="354.97" y="97" fill="var(--ink2)" font-size="13" font-weight="600">18,420</text>
+<text x="172" y="135" text-anchor="end" fill="var(--ink)" font-size="13">zero-dependency</text>
+<rect x="184" y="122" width="202.56" height="18" rx="4" fill="var(--bar)"/>
+<text x="396.56" y="135" fill="var(--ink2)" font-size="13" font-weight="600">23,180</text>
+<text x="172" y="173" text-anchor="end" fill="var(--ink)" font-size="13">most-readable</text>
+<rect x="184" y="160" width="217.33" height="18" rx="4" fill="var(--bar)"/>
+<text x="411.33" y="173" fill="var(--ink2)" font-size="13" font-weight="600">24,870</text>
+<text x="172" y="211" text-anchor="end" fill="var(--ink)" font-size="13">type-safe</text>
+<rect x="184" y="198" width="227.29" height="18" rx="4" fill="var(--bar)"/>
+<rect x="182" y="195" width="231.29" height="24" rx="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
+<text x="421.29" y="211" fill="var(--ink2)" font-size="13" font-weight="600">26,010</text>
+<text x="479.29" y="211" fill="var(--muted)" font-size="12">winner</text>
+<text x="172" y="249" text-anchor="end" fill="var(--ink)" font-size="13">performance-first</text>
+<rect x="184" y="236" width="360.47" height="18" rx="4" fill="var(--bar)"/>
+<text x="554.47" y="249" fill="var(--ink2)" font-size="13" font-weight="600">41,250</text>
+<text x="172" y="287" text-anchor="end" fill="var(--ink)" font-size="13">most-defensive</text>
+<rect x="184" y="274" width="460" height="18" rx="4" fill="url(#hatch)"/>
+<rect x="184" y="274" width="460" height="18" rx="4" fill="none" stroke="var(--axis)" stroke-width="1"/>
+<text x="654" y="287" fill="var(--ink2)" font-size="13" font-weight="600">52,640</text>
+<text x="414" y="332" text-anchor="middle" fill="var(--muted)" font-size="12">total tokens</text>
+</svg>

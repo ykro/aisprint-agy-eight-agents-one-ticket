@@ -1,0 +1,30 @@
+<svg class="viz" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 348" width="760" height="348" role="img" aria-label="Time to first green by lane." font-family="system-ui, -apple-system, sans-serif">
+<style>.viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}@media (prefers-color-scheme: dark){.viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}}:root[data-theme="dark"] .viz{--surface:#1a1a19;--ink:#ffffff;--ink2:#c3c2b7;--muted:#898781;--grid:#2c2c2a;--axis:#383835;--bar:#3987e5;--accent:#3987e5;--deemph:#6a6a66;--hatch:#c3c2b7}:root[data-theme="light"] .viz{--surface:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--muted:#898781;--grid:#e1e0d9;--axis:#c3c2b7;--bar:#256abf;--accent:#256abf;--deemph:#a8a7a0;--hatch:#898781}</style>
+<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--surface)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="2"/></pattern></defs>
+<title>Time to first green by lane.</title>
+<rect x="0" y="0" width="760" height="348" fill="var(--surface)"/>
+<text x="16" y="28" fill="var(--ink)" font-size="17" font-weight="600">Time to first all-green, by lane</text>
+<text x="16" y="48" fill="var(--ink2)" font-size="12.5">Elapsed from fan-out to the lane's first passing test run. Winner ringed.</text>
+<line x1="184" y1="66" x2="184" y2="302" stroke="var(--axis)" stroke-width="1"/>
+<text x="172" y="97" text-anchor="end" fill="var(--ink)" font-size="13">minimal-diff</text>
+<rect x="184" y="84" width="219.32" height="18" rx="4" fill="var(--bar)"/>
+<text x="413.32" y="97" fill="var(--ink2)" font-size="13" font-weight="600">0:42</text>
+<text x="172" y="135" text-anchor="end" fill="var(--ink)" font-size="13">zero-dependency</text>
+<rect x="184" y="122" width="283.03" height="18" rx="4" fill="var(--bar)"/>
+<text x="477.03" y="135" fill="var(--ink2)" font-size="13" font-weight="600">0:54</text>
+<text x="172" y="173" text-anchor="end" fill="var(--ink)" font-size="13">most-readable</text>
+<rect x="184" y="160" width="300.03" height="18" rx="4" fill="var(--bar)"/>
+<text x="494.03" y="173" fill="var(--ink2)" font-size="13" font-weight="600">0:57</text>
+<text x="172" y="211" text-anchor="end" fill="var(--ink)" font-size="13">type-safe</text>
+<rect x="184" y="198" width="315.79" height="18" rx="4" fill="var(--bar)"/>
+<rect x="182" y="195" width="319.79" height="24" rx="6" fill="none" stroke="var(--ink)" stroke-width="2"/>
+<text x="509.79" y="211" fill="var(--ink2)" font-size="13" font-weight="600">1:00</text>
+<text x="551.79" y="211" fill="var(--muted)" font-size="12">winner</text>
+<text x="172" y="249" text-anchor="end" fill="var(--ink)" font-size="13">performance-first</text>
+<rect x="184" y="236" width="460" height="18" rx="4" fill="var(--bar)"/>
+<text x="654" y="249" fill="var(--ink2)" font-size="13" font-weight="600">1:28</text>
+<text x="172" y="287" text-anchor="end" fill="var(--ink)" font-size="13">most-defensive</text>
+<rect x="184" y="274" width="54" height="18" rx="4" fill="url(#hatch)" stroke="var(--axis)" stroke-width="1"/>
+<text x="248" y="287" fill="var(--ink2)" font-size="13">did not green</text>
+<text x="414" y="332" text-anchor="middle" fill="var(--muted)" font-size="12">elapsed time (m:ss)</text>
+</svg>

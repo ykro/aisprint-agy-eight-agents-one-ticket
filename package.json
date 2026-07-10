@@ -1,0 +1,21 @@
+{
+  "name": "blog-root",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "build": "tsx 03-eight-agents-one-ticket/src/build.ts",
+    "server": "tsx 03-eight-agents-one-ticket/src/server.ts",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "ts-morph": "^24.0.0",
+    "tsx": "^4.19.0",
+    "tinybench": "^3.1.0",
+    "typescript": "^5.7.0",
+    "vite-tsconfig-paths": "^5.1.0",
+    "vitest": "^3.0.0",
+    "hono": "^4.6.0"
+  }
+}
