@@ -9,5 +9,9 @@
   "scripts": {
     "build": "tsx src/build.ts",
     "server": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@aisprint/harness-core": "workspace:*",
+    "@aisprint/moneysplit": "workspace:*"
   }
 }

@@ -33,7 +33,14 @@ importers:
         specifier: ^3.0.0
         version: 3.2.7(@types/node@22.20.1)(tsx@4.23.0)
 
-  03-eight-agents-one-ticket: {}
+  03-eight-agents-one-ticket:
+    dependencies:
+      '@aisprint/harness-core':
+        specifier: workspace:*
+        version: link:../shared/harness-core
+      '@aisprint/moneysplit':
+        specifier: workspace:*
+        version: link:../shared/moneysplit
 
   shared/gcp: {}
 
