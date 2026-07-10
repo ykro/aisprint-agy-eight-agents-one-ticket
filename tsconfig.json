@@ -1,9 +1,20 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./shared/moneysplit" },
-    { "path": "./shared/harness-core" },
-    { "path": "./shared/gcp" },
-    { "path": "./03-eight-agents-one-ticket" }
-  ]
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022"],
+    "types": ["node"],
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts"]
 }
